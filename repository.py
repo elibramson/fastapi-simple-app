@@ -1,5 +1,5 @@
 from database import new_session, TaskOrm
-from main import STaskAdd
+from schemas import STaskAdd, STask
 from sqlalchemy import select
 
 
@@ -17,9 +17,10 @@ class TaskRepository:
 
 
     @classmethod
-    async def find_all(cls):
+    async def find_all(cls) -> list[STask]:
         async with new_session() as session:
             query = select(TaskOrm)
             result = await session.execute(query)
             task_models = result.scalars().all()
+            task_schemas = [STask.model_validate(task_model) for task_model in task_models]
             return task_models
