@@ -22,7 +22,9 @@ fastapi-simple-app/
 ├── repository.py    # Data access layer
 ├── schemas.py       # Pydantic models
 ├── database.py      # Database configuration
-└── requirements.txt # Python dependencies
+├── requirements.txt # Python dependencies
+├── Dockerfile       # Docker container configuration
+└── .dockerignore    # Docker ignore file
 ```
 
 ## Getting Started
@@ -54,6 +56,34 @@ fastapi-simple-app/
    - Interactive docs: http://localhost:8000/docs
    - Alternative docs: http://localhost:8000/redoc
 
+## Docker Deployment
+
+The application can also be run using Docker for consistent deployment across different environments.
+
+### Using Docker
+
+1. **Build the Docker image**
+   ```bash
+   docker build -t fastapi-simple-app .
+   ```
+
+2. **Run the container**
+   ```bash
+   docker run -p 8000:8000 fastapi-simple-app
+   ```
+
+3. **Access the API**
+   - API: http://localhost:8000
+   - Interactive docs: http://localhost:8000/docs
+
+### Docker Compose (Optional)
+
+For more complex deployments, you can use Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
 ## API Endpoints
 
 - `POST /tasks` - Create a new task
@@ -70,5 +100,7 @@ This project serves as a hands-on learning experience for:
 - Implementing clean architecture patterns
 - Working with modern Python type hints
 - Building RESTful APIs with automatic documentation
+- Containerization with Docker
+- Deployment best practices
 
 Feel free to explore the code, make changes, and experiment with different patterns!
